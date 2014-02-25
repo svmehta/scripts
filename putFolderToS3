@@ -1,0 +1,2 @@
+#!/bin/bash
+s3cmd put --recursive $1 s3://$2

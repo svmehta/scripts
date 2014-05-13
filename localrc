@@ -1,0 +1,55 @@
+ Minimal Content
+# ---------------
+ADMIN_PASSWORD=nova
+MYSQL_PASSWORD=stack
+RABBIT_PASSWORD=stack
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+SERVICE_TOKEN=$ADMIN_PASSWORD
+# Neutron
+# -------
+disable_service n-net
+enable_service neutron
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+enable_service q-lbaas
+OVS_ENABLE_TUNNELING=False
+# Bug https://bugs.launchpad.net/neutron/+bug/1112912
+LIBVIRT_FIREWALL_DRIVER=nova.virt.firewall.NoopFirewallDriver
+# Heat and Ceilometer
+#enable_service heat
+#enable_service h-api
+#enable_service h-api-cfg
+#enable_service h-api-cw
+#enable_service h-eng
+#enable_service ceilomete-api
+#enable_service ceilometer-acompute
+#enable_service ceilometer-acentral
+#enable_service ceilometer-collector
+#enable_service ceilometer-alarm-notifier
+#enable_service ceilometer-alarm-singleton
+
+# Swift
+# -----
+enable_service swift
+SWIFT_REPLICAS=1
+SWIFT_HASH=nova
+
+# Keystone
+# --------
+KEYSTONE_CATALOG_BACKEND=sql
+
+# Cinder
+# ------
+
+VOLUME_BACKING_FILE_SIZE=2560M
+# Do not modify below if you don't know what you are doing
+HOST_IP_IFACE=eth0
+# OFFLINE=True
+disable_service tempest
+disable_service n-obj
+disable_service ec2
+APACHE_ENABLED_SERVICES+=keystone,swift
+

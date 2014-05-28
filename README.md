@@ -1,1 +1,1 @@
-bash scripts I use often
+scripts and configs
